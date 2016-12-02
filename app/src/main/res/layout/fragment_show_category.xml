@@ -6,6 +6,6 @@
     android:id="@+id/show_category_recycler_fragment"
     android:layoutAnimation="@anim/grid_layout_animation"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.android.toqc.Fragments.ShowCategoryFragment">
+    tools:context="com.example.android.toqc.fragments.ShowCategoryFragment">
 
 </com.example.android.toqc.widgets.GridRecyclerView>

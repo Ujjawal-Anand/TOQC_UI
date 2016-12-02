@@ -13,7 +13,7 @@ public class ShowCategory {
     }
 
     public ShowCategory(String text, int thumbnail) {
-        this. text = text;
+        this.text = text;
         this.thumbnail = thumbnail;
     }
 

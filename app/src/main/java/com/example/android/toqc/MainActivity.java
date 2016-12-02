@@ -1,11 +1,12 @@
 package com.example.android.toqc;
 
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.example.android.toqc.Fragments.ShowCategoryFragment;
+import com.example.android.toqc.fragments.ShowCategoryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,11 +15,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolbar();
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_content, new ShowCategoryFragment())
+                    .add(R.id.container, new ShowCategoryFragment())
                     .commit();
         }
+    }
+
+    @Override
+    public void onEnterAnimationComplete() {
+        super.onEnterAnimationComplete();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, new ShowCategoryFragment())
+                .commit();
     }
 
        private void initToolbar() {
