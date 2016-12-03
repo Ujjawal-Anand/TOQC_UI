@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
 
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.mipmap.ic_menu_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.mipmap.ic_icon);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
