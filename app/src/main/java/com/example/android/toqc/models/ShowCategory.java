@@ -6,14 +6,18 @@ package com.example.android.toqc.models;
 
 public class ShowCategory {
     private String text;
+    private int imageBackground;
+    private int textBackground;
     private int thumbnail;
 
     public ShowCategory() {
 
     }
 
-    public ShowCategory(String text, int thumbnail) {
+    public ShowCategory(String text, int imageBackground, int textBackground, int thumbnail) {
         this.text = text;
+        this.imageBackground = imageBackground;
+        this.textBackground = textBackground;
         this.thumbnail = thumbnail;
     }
 
@@ -21,8 +25,24 @@ public class ShowCategory {
         return text;
     }
 
+    public int getImageBackground() {
+        return imageBackground;
+    }
+
+    public int getTextBackground() {
+        return textBackground;
+    }
+
     public int getThumbnail() {
         return thumbnail;
+    }
+
+    public void setImageBackground(int imageBackground) {
+        this.imageBackground = imageBackground;
+    }
+
+    public void setTextBackground(int textBackground) {
+        this.textBackground = textBackground;
     }
 
     public void setThumbnail(int thumbnail) {

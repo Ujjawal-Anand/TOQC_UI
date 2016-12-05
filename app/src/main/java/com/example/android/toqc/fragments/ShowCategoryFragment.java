@@ -79,46 +79,72 @@ public class ShowCategoryFragment extends Fragment implements ShowCategoryAdapte
 
     private void prepareCategory() {
         int[] covers = new int[]{
+                R.drawable.icon_category_leaderboard_raster,
+                R.drawable.icon_category_science_raster,
                 R.drawable.icon_category_history_raster,
                 R.drawable.icon_category_geography_raster,
-                R.drawable.icon_category_science_raster,
                 R.drawable.icon_category_sports_raster,
                 R.drawable.icon_category_music_raster,
                 R.drawable.icon_category_entertainment_raster,
                 R.drawable.icon_category_tvmovies_raster,
                 R.drawable.icon_category_food_raster,
-                R.drawable.icon_category_leaderboard_raster,
                 R.drawable.icon_category_knowledge_raster,
                 };
 
-        ShowCategory a = new ShowCategory("History", covers[0]);
+        int[] imageBackgrounds = new int[] {
+                R.color.colorOrangeLight,
+                R.color.colorGreenLight,
+                R.color.colorBlueLight,
+                R.color.colorYellowLight,
+                R.color.colorPurpleLight,
+                R.color.colorPinkLight,
+                R.color.colorOrangeLight,
+                R.color.colorGreenLight,
+                R.color.colorGreenLight,
+                R.color.colorBlueLight
+              };
+
+         int[] textBackgrounds = new int[] {
+                R.color.colorOrangeDark,
+                R.color.colorGreenDark,
+                R.color.colorBlueDark,
+                R.color.colorYellowDark,
+                R.color.colorPurpleDark,
+                R.color.colorPinkDark,
+                R.color.colorOrangeDark,
+                R.color.colorGreenDark,
+                R.color.colorGreenDark,
+                R.color.colorBlueDark
+         };
+        ShowCategory a = new ShowCategory("TOQC Live", imageBackgrounds[0], textBackgrounds[0], covers[0]);
         categoryList.add(a);
 
-        a = new ShowCategory("Geography",covers[1]);
+        a = new ShowCategory("Science", imageBackgrounds[1], textBackgrounds[1], covers[1]);
         categoryList.add(a);
 
-        a = new ShowCategory("Science",covers[2]);
+        a = new ShowCategory("History", imageBackgrounds[2], textBackgrounds[2],covers[2]);
         categoryList.add(a);
 
-        a = new ShowCategory("Sports", covers[3]);
+        a = new ShowCategory("Geography",  imageBackgrounds[3], textBackgrounds[3], covers[3]);
         categoryList.add(a);
 
-        a = new ShowCategory("Music",covers[4]);
+
+        a = new ShowCategory("Sports", imageBackgrounds[4], textBackgrounds[4],  covers[4]);
         categoryList.add(a);
 
-        a = new ShowCategory("Entertainment",covers[5]);
+        a = new ShowCategory("Music", imageBackgrounds[5], textBackgrounds[5], covers[5]);
         categoryList.add(a);
 
-        a = new ShowCategory("Movies",covers[6]);
+        a = new ShowCategory("Entertainment", imageBackgrounds[6], textBackgrounds[6], covers[6]);
         categoryList.add(a);
 
-        a = new ShowCategory("Food",covers[7]);
+        a = new ShowCategory("Movies", imageBackgrounds[7], textBackgrounds[7], covers[7]);
         categoryList.add(a);
 
-        a = new ShowCategory("Leaderboard",covers[8]);
+        a = new ShowCategory("Food", imageBackgrounds[8], textBackgrounds[8], covers[8]);
         categoryList.add(a);
 
-        a = new ShowCategory("Knowledge",covers[9]);
+        a = new ShowCategory("Random", imageBackgrounds[9], textBackgrounds[9], covers[9]);
         categoryList.add(a);
 
         adapter.notifyDataSetChanged();

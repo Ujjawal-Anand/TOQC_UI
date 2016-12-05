@@ -46,7 +46,9 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ShowCategory category = categoryList.get(position);
         holder.text.setText(category.getText());
+        holder.text.setBackgroundResource(category.getTextBackground());
         holder.thumbnail.setImageBitmap(null);
+        holder.thumbnail.setBackgroundResource(category.getImageBackground());
 //        Picasso.with(holder.image.getContext()).load(item.getImage()).into(holder.image);
         Glide.with(mContext).load(category.getThumbnail()).into(holder.thumbnail);
         holder.itemView.setTag(category);
@@ -69,6 +71,7 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
             super(itemView);
             thumbnail = (ImageView) itemView.findViewById(R.id.image);
             text = (TextView) itemView.findViewById(R.id.text);
+
         }
     }
 
