@@ -24,7 +24,7 @@ public class ShowCategoryFragment extends Fragment implements ShowCategoryAdapte
     private RecyclerView recyclerView;
     private List<ShowCategory> categoryList;
     private View rootview;
-    private ShowCategoryAdapter adapter;
+    private ShowCategoryAdapter mAdapter;
 
     public ShowCategoryFragment() {
 
@@ -50,7 +50,7 @@ public class ShowCategoryFragment extends Fragment implements ShowCategoryAdapte
         rootview = inflater.inflate(R.layout.fragment_show_category, container, false);
 
         categoryList = new ArrayList<>();
-        adapter = new ShowCategoryAdapter(getContext(), categoryList);
+        mAdapter = new ShowCategoryAdapter(getContext(), categoryList);
 
         initRecyclerView();
         prepareCategory();
@@ -147,12 +147,15 @@ public class ShowCategoryFragment extends Fragment implements ShowCategoryAdapte
         a = new ShowCategory("Random", imageBackgrounds[9], textBackgrounds[9], covers[9]);
         categoryList.add(a);
 
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onItemClick(View view, ShowCategory showCategory) {
+    public void onItemClick(View view,int position, ShowCategory showCategory) {
 //        DetailActivity.navigate(this, view.findViewById(R.id.image), showCategory);
+         startQuizActivityWithTransition(this,
+                                view.findViewById(R.id.title),
+                                mAdapter.getItem(position));
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.android.toqc.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +20,28 @@ import java.util.List;
  * Created by ujjawal on 3/12/16.
  */
 
-public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapter.MyViewHolder>
-              implements View.OnClickListener {
+public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapter.MyViewHolder> {
 
     private Context mContext;
+    private Activity mActivity;
+    private String mPackageName;
+//    private Resources mResources;
+//    private final LayoutInflater mLayoutInflater;
     private List<ShowCategory> categoryList;
-    private OnItemClickListener onItemClickListener;
+    private OnItemClickListener mOnItemClickListener;
+
+    public ShowCategoryAdapter(Activity activity) {
+        mActivity = activity;
+//        mResources = mActivity.getResources();
+        mPackageName = mActivity.getPackageName();
+//        mLayoutInflater = LayoutInflater.from(activity.getApplicationContext());
+//        updateCategories(activity);
+    }
+
+     public interface OnItemClickListener {
+        void onClick(View view, int position);
+    }
+
 
     public ShowCategoryAdapter(Context mContext,List<ShowCategory> categoryList) {
         this.mContext = mContext;
@@ -32,13 +50,20 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+        this.mOnItemClickListener = onItemClickListener;
     }
 
      @Override
      public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
-        v.setOnClickListener(this);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onClick(v, );
+            }
+        }
+
+        );
         return new MyViewHolder(v);
     }
 
@@ -57,6 +82,11 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
     public int getItemCount() {
         return categoryList.size();
     }
+
+    public ShowCategory getItem(int position) {
+        return categoryList.get(position);
+    }
+
 
     @Override
     public void onClick(final View v) {
