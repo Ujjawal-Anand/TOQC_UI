@@ -1,5 +1,9 @@
 package com.example.android.toqc.adapters;
 
+/**
+ * Created by ujjawal on 6/12/16.
+ */
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -20,7 +24,7 @@ import java.util.List;
  * Created by ujjawal on 3/12/16.
  */
 
-public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapter.MyViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
     private Context mContext;
     private Activity mActivity;
@@ -30,7 +34,7 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
     private List<ShowCategory> categoryList;
     private OnItemClickListener mOnItemClickListener;
 
-    public ShowCategoryAdapter(Activity activity) {
+    public CategoryAdapter(Activity activity) {
         mActivity = activity;
 //        mResources = mActivity.getResources();
         mPackageName = mActivity.getPackageName();
@@ -43,32 +47,21 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
     }
 
 
-    public ShowCategoryAdapter(Context mContext,List<ShowCategory> categoryList) {
+    public CategoryAdapter(Context mContext,List<ShowCategory> categoryList) {
         this.mContext = mContext;
         this.categoryList = categoryList;
 
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.mOnItemClickListener = onItemClickListener;
-    }
 
      @Override
      public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnItemClickListener.onClick(v, );
-            }
-        }
-
-        );
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         ShowCategory category = categoryList.get(position);
         holder.text.setText(category.getText());
         holder.text.setBackgroundResource(category.getTextBackground());
@@ -77,6 +70,12 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
 //        Picasso.with(holder.image.getContext()).load(item.getImage()).into(holder.image);
         Glide.with(mContext).load(category.getThumbnail()).into(holder.thumbnail);
         holder.itemView.setTag(category);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onClick(v, holder.getAdapterPosition());
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -88,10 +87,6 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
     }
 
 
-    @Override
-    public void onClick(final View v) {
-        onItemClickListener.onItemClick(v, (ShowCategory) v.getTag());
-    }
 
     protected static class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView thumbnail;
@@ -105,11 +100,11 @@ public class ShowCategoryAdapter extends RecyclerView.Adapter<ShowCategoryAdapte
         }
     }
 
-        public interface OnItemClickListener {
-
-        void onItemClick(View view, ShowCategory showCategory);
-
+     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 
 
-}
+
+    }
+
