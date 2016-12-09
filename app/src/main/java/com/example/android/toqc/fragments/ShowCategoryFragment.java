@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.toqc.R;
+import com.example.android.toqc.activities.DetailActivity;
 import com.example.android.toqc.adapters.ShowCategoryAdapter;
 import com.example.android.toqc.models.ShowCategory;
 
@@ -152,7 +153,7 @@ public class ShowCategoryFragment extends Fragment implements ShowCategoryAdapte
 
     @Override
     public void onItemClick(View view, ShowCategory showCategory) {
-//        DetailActivity.navigate(this, view.findViewById(R.id.image), showCategory);
+        DetailActivity.navigate(getActivity(), view.findViewById(R.id.image), showCategory);
     }
 
 
